@@ -20,7 +20,7 @@ const pacifico = Pacifico({
 
 export const metadata: Metadata = {
   title: 'Happy 4th Anniversary, Koyeliya!',
-  description: 'A beautiful digital scrapbook.',
+  description: 'For you. Always. ♡',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
