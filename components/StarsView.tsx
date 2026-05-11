@@ -154,7 +154,9 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
     }
 
     const onPointerMove = (e: PointerEvent) => {
-       currentMouse = { x: e.clientX, y: e.clientY };
+       const rect = canvas.getBoundingClientRect();
+       currentMouse = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+       
        if (isDragging) {
          camX += e.clientX - lastMouse.x;
          camY += e.clientY - lastMouse.y;
@@ -175,7 +177,7 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
 
     window.addEventListener('resize', onResize);
     canvas.addEventListener('pointerdown', onPointerDown);
-    window.addEventListener('pointermove', onPointerMove);
+    canvas.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerup', onPointerUp);
     canvas.addEventListener('click', onClick);
 
@@ -183,8 +185,8 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
        cancelAnimationFrame(reqId);
        window.removeEventListener('resize', onResize);
        canvas.removeEventListener('pointerdown', onPointerDown);
-       window.removeEventListener('pointermove', onPointerMove);
-       window.removeEventListener('pointerup', onPointerUp);
+       canvas.removeEventListener('pointermove', onPointerMove);
+       canvas.removeEventListener('pointerup', onPointerUp);
        canvas.removeEventListener('click', onClick);
     }
 

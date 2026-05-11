@@ -20,13 +20,13 @@ export default function Home() {
   return (
     <main className="relative w-full h-screen overflow-hidden bg-[#FFF8F0] paper-grain">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex flex-col md:flex-row justify-between items-center bg-[#FFF8F0]/80 backdrop-blur-sm border-b border-[#D4B896]/30">
+      <nav className="fixed top-0 left-0 w-full z-50 px-4 h-20 flex justify-between items-center bg-[#FFF8F0]/80 backdrop-blur-sm border-b border-[#D4B896]/30">
         <div className="flex items-center gap-2">
-           <h1 className="font-cursive text-5xl text-[#3D2B1F] drop-shadow-sm cursor-default">Koyeliya</h1>
-           <HeartDoodle className="rotate-12" />
+           <h1 className="font-cursive text-3xl md:text-5xl text-[#3D2B1F] drop-shadow-sm cursor-default">Koyeliya</h1>
+           <HeartDoodle className="rotate-12 w-5 h-5 md:w-6 md:h-6" />
         </div>
         
-        <div className="flex gap-8 font-handwritten text-2xl text-[#3D2B1F]">
+        <div className="flex gap-4 md:gap-8 font-handwritten text-lg md:text-2xl text-[#3D2B1F]">
           {navItems.map(item => (
             <button
               key={item.id}
@@ -48,7 +48,7 @@ export default function Home() {
       <AudioPlayer />
 
       {/* Main Views Container */}
-      <div className="absolute inset-0 pt-32 w-full h-full">
+      <div className="absolute inset-0 pt-20 w-full h-full">
          <AnimatePresence mode="wait">
             {activeView === 'journey' && (
                <motion.div

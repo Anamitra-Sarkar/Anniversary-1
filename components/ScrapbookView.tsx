@@ -39,8 +39,8 @@ function Timer() {
             { label: 'Secs', val: time.secs},
         ].map((t, i) => (
             <div key={i} className="scrapbook-card p-3">
-                <div className="font-mono text-3xl font-bold">{t.val}</div>
-                <div className="text-[10px] uppercase tracking-wider font-handwritten">{t.label}</div>
+                <div className="font-handwritten text-4xl">{t.val}</div>
+                <div className="text-sm font-handwritten">{t.label}</div>
             </div>
         ))}
       </div>
@@ -72,15 +72,17 @@ function ScratchToReveal() {
     const ctx = canvasRef.current?.getContext('2d');
     if(!ctx || !canvasRef.current) return;
     
-    ctx.fillStyle = '#D4B896'; // Warm gold/bronze
-    ctx.fillRect(0,0,300,400);
-    
-    ctx.fillStyle = '#3D2B1F';
-    ctx.font = '24px Caveat';
-    ctx.textAlign = 'center';
-    ctx.fillText('Scratch to Reveal', 150, 200);
+    document.fonts.ready.then(() => {
+        ctx.fillStyle = '#D4B896'; // Warm gold/bronze
+        ctx.fillRect(0,0,300,400);
+        
+        ctx.fillStyle = '#3D2B1F';
+        ctx.font = '24px Caveat';
+        ctx.textAlign = 'center';
+        ctx.fillText('Scratch to Reveal', 150, 200);
 
-    ctx.globalCompositeOperation = 'destination-out';
+        ctx.globalCompositeOperation = 'destination-out';
+    });
   }, []);
 
   const handleScratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -138,7 +140,7 @@ function Envelope({ opened }: { opened: boolean }) {
           
           <div className="absolute inset-0 bg-[#E8A0A0] z-40" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0, 50% 50%, 0 0)'}}></div>
           
-          <div className={`absolute top-0 left-0 w-full h-1/2 bg-[#C9A96E] origin-top transition-transform duration-700 z-30 scrapbook-card ${open ? 'rotate-x-180 opacity-0' : ''}`} style={{ clipPath: 'polygon(0 0, 100% 0, 50% 100%)', transformStyle: 'preserve-3d', backfaceVisibility: 'hidden'}}></div>
+          <div className={`absolute top-0 left-0 w-full h-1/2 bg-[#C9A96E] origin-top transition-transform duration-700 z-30 scrapbook-card`} style={{ transform: open ? 'rotateX(180deg)' : 'rotateX(0deg)', opacity: open ? 0 : 1, transition: 'transform 0.7s, opacity 0.7s', clipPath: 'polygon(0 0, 100% 0, 50% 100%)', transformStyle: 'preserve-3d', backfaceVisibility: 'hidden'}}></div>
        </div>
        <p className="mt-16 text-[#3D2B1F]/60 font-handwritten text-xl tracking-widest uppercase animate-pulse">{!open ? 'Tap to open' : 'A special moment'}</p>
     </div>

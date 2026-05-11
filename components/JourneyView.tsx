@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
-import { motion } from 'motion/react';
 import { StarDoodle } from './Doodles';
 
 export default function JourneyView() {
@@ -18,7 +17,7 @@ export default function JourneyView() {
         if (container) {
             container.scrollLeft += autoScrollSpeed;
             // Loop: when reaching end, snap back
-            if (container.scrollLeft >= (container.scrollWidth - container.clientWidth) / 2) {
+            if (container.scrollLeft >= container.scrollWidth / 2) {
                 container.scrollLeft = 0;
             }
         }
@@ -50,9 +49,7 @@ export default function JourneyView() {
         className="flex items-center gap-12 px-20 py-12 overflow-x-auto scrollbar-hide select-none flex-grow"
       >
         {[...memories, ...memories].map((item, idx) => (
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          <div 
             key={`${item.num}-${idx}`} 
             className="scrapbook-card w-72 p-4 pt-10 flex flex-col items-center flex-shrink-0"
             style={{ transform: `rotate(${(idx % 5 - 2) * 1.5}deg)` }}
@@ -66,7 +63,7 @@ export default function JourneyView() {
             </div>
             <h3 className="font-cursive text-[#3D2B1F] text-4xl mt-6">{item.text}</h3>
             <p className="font-handwritten text-[#3D2B1F]/70 text-xl text-center">{item.desc}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

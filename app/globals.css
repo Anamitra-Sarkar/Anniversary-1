@@ -26,9 +26,6 @@ body {
 
 .scrapbook-card {
   background: #FFFDF7;
-  border-left: 1px solid #D4B896;
-  border-top: 1px solid #D4B896;
-  border-right: 2px solid #D4B896;
-  border-bottom: 2px solid #D4B896;
-  box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid rgba(212, 184, 150, 0.4);
+  box-shadow: 2px 2px 0px #D4B896, 4px 4px 12px rgba(0,0,0,0.08);
 }
