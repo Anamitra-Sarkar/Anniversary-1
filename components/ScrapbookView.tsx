@@ -196,7 +196,7 @@ export default function ScrapbookView() {
                               >
                                  &larr; Prev
                               </button>
-                              <div className="text-[#3D2B1F]/30 text-xs font-mono">{idx + 1} / {pages.length}</div>
+                              <div className="text-[#3D2B1F]/30 text-xs font-mono">{currentPage + 1} / {pages.length}</div>
                               <button 
                                  onClick={() => setCurrentPage(p => Math.min(pages.length - 1, p + 1))}
                                  className={`text-[#3D2B1F]/60 hover:text-[#E8A0A0] transition-colors text-sm font-handwritten ${currentPage >= pages.length - 1 ? 'opacity-0 pointer-events-none' : ''}`}

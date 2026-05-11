@@ -6,7 +6,7 @@ import { X } from 'lucide-react';
 
 export default function StarsView({ hidden }: { hidden?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [activeModal, setActiveModal] = useState<{id: number, name: string, img: string, desc: string} | null>(null);
+  const [activeModal, setActiveModal] = useState<{id: number, name: string, img: string, desc: string, objectPosition: string} | null>(null);
   
   useEffect(() => {
     if (!canvasRef.current || hidden) return;
@@ -43,10 +43,10 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
 
     // Constellations (Years 1-4)
     const constellations = [
-        { id: 1, name: "How It Started", img: "/image5.jpg", desc: "The day everything changed.", x: -width/4, y: -height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:50, y:-40}, {x:90, y:10}, {x:140, y:-20}] },
-        { id: 2, name: "Year Two", img: "/image6.jpg", desc: "Getting closer, one laugh at a time.", x: width/3, y: -height/6, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-30, y:60}, {x:40, y:100}, {x:80, y:50}] },
-        { id: 3, name: "Year Three", img: "/image7.jpg", desc: "Adventures we'll never forget.", x: -width/5, y: height/3, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:60, y:20}, {x:80, y:-30}, {x:130, y:40}] },
-        { id: 4, name: "Year Four", desc: "Still us, still magic.", x: width/4, y: height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-40, y:-40}, {x:-80, y:10}, {x:-100, y:-50}] },
+        { id: 1, name: "How It Started", img: "/image5.jpg", objectPosition: "top center", desc: "The day everything changed.", x: -width/4, y: -height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:50, y:-40}, {x:90, y:10}, {x:140, y:-20}] },
+        { id: 2, name: "Year Two", img: "/image6.jpg", objectPosition: "center 20%", desc: "Getting closer, one laugh at a time.", x: width/3, y: -height/6, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-30, y:60}, {x:40, y:100}, {x:80, y:50}] },
+        { id: 3, name: "Year Three", img: "/image7.jpg", objectPosition: "top center", desc: "Adventures we'll never forget.", x: -width/5, y: height/3, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:60, y:20}, {x:80, y:-30}, {x:130, y:40}] },
+        { id: 4, name: "Year Four", img: "/image8.jpg", objectPosition: "top center", desc: "Still us, still magic.", x: width/4, y: height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-40, y:-40}, {x:-80, y:10}, {x:-100, y:-50}] },
     ];
 
     const getScreenPos = (cx: number, cy: number, px: number, py: number) => {
@@ -171,7 +171,7 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
     const onClick = () => {
        if (hoveredId) {
           const c = constellations.find(x => x.id === hoveredId);
-          if (c) setActiveModal({ id: c.id, name: c.name, img: c.img || '', desc: c.desc });
+          if (c) setActiveModal({ id: c.id, name: c.name, img: c.img || '', desc: c.desc, objectPosition: c.objectPosition || 'top center' });
        }
     }
 
@@ -223,7 +223,7 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
                   </button>
                   <div className="w-full aspect-square bg-[#FFFDF7] overflow-hidden border border-[#D4B896]/20 mb-6">
                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                     <img src={activeModal.img} alt={activeModal.name} className="w-full h-full object-cover" />
+                     <img src={activeModal.img} alt={activeModal.name} className="w-full h-full object-cover" style={{ objectPosition: activeModal.objectPosition }} />
                   </div>
                   <h3 className="font-cursive text-[#3D2B1F] text-4xl mb-2 text-center">{activeModal.name}</h3>
                   <p className="text-[#3D2B1F]/70 font-handwritten text-xl text-center">{activeModal.desc}</p>

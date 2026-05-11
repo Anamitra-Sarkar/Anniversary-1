@@ -29,11 +29,11 @@ export default function JourneyView() {
   }, []);
 
   const memories = [
-    { num: 1, text: "Our Beginning", desc: "Where it all started." },
-    { num: 2, text: "Year One", desc: "The first year together." },
-    { num: 3, text: "Year Two", desc: "Growing closer." },
-    { num: 4, text: "Year Three", desc: "Adventures & Laughs." },
-    { num: 5, text: "Year Four", desc: "Our 4th Anniversary." },
+    { num: 1, text: "Our Beginning", desc: "Where it all started.", objectPosition: "top center" },
+    { num: 2, text: "Year One", desc: "The first year together.", objectPosition: "center 20%" },
+    { num: 3, text: "Year Two", desc: "Growing closer.", objectPosition: "top center" },
+    { num: 4, text: "Year Three", desc: "Adventures & Laughs.", objectPosition: "top center" },
+    { num: 5, text: "Year Four", desc: "Our 4th Anniversary.", objectPosition: "top center" },
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function JourneyView() {
             
             <div className="w-full aspect-square bg-[#FFFDF7] overflow-hidden border border-[#D4B896]/20">
                {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img src={`/image${item.num}.jpg`} alt={`Memory ${item.num}`} className="w-full h-full object-cover object-top" />
+               <img src={`/image${item.num}.jpg`} alt={`Memory ${item.num}`} className="w-full h-full object-cover" style={{ objectPosition: item.objectPosition }} />
             </div>
             <h3 className="font-cursive text-[#3D2B1F] text-4xl mt-6">{item.text}</h3>
             <p className="font-handwritten text-[#3D2B1F]/70 text-xl text-center">{item.desc}</p>
