@@ -10,7 +10,7 @@ function Timer() {
   const [time, setTime] = useState({ years: 0, days: 0, hours: 0, mins: 0, secs: 0 });
 
   useEffect(() => {
-    const start = new Date('2022-05-10T00:00:00').getTime();
+    const start = new Date('2022-05-11T00:00:00').getTime();
     
     const int = setInterval(() => {
         const now = new Date().getTime();
@@ -28,7 +28,7 @@ function Timer() {
   return (
     <div className="flex flex-col items-center justify-center h-full space-y-4">
       <h3 className="font-cursive text-5xl text-[#3D2B1F]">Falling in Love</h3>
-      <p className="text-[#3D2B1F]/60 uppercase tracking-[0.2em] text-xs font-handwritten">Since May 10, 2022</p>
+      <p className="text-[#3D2B1F]/60 uppercase tracking-[0.2em] text-xs font-handwritten">Since May 11, 2022</p>
       
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 w-full mt-8 text-center text-[#3D2B1F]">
         {[
