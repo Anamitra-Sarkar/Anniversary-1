@@ -57,7 +57,7 @@ export default function JourneyView() {
             {/* Washi Tape */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#E8A0A0]/40 -rotate-2 z-10"></div>
             
-            <div className="w-full aspect-square bg-[#FFFDF7] overflow-hidden border border-[#D4B896]/20">
+            <div className="w-full aspect-[4/5] bg-[#FFFDF7] overflow-hidden border border-[#D4B896]/20">
                {/* eslint-disable-next-line @next/next/no-img-element */}
                <img src={`/image${item.num}.jpg`} alt={`Memory ${item.num}`} className="w-full h-full object-cover" style={{ objectPosition: item.objectPosition }} />
             </div>
