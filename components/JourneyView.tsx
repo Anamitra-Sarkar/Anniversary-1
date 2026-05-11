@@ -37,7 +37,7 @@ export default function JourneyView() {
   ];
 
   return (
-    <div className="relative w-full h-full flex flex-col pt-10">
+    <div className="relative w-full h-full flex flex-col pt-24">
       <div className="flex justify-center items-center gap-2 mb-10">
         <h2 className="font-sans text-5xl text-[#3D2B1F]">The Journey</h2>
         <StarDoodle className="-rotate-12" />

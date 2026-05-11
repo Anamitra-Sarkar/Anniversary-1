@@ -52,13 +52,15 @@ function Gallery() {
   return (
     <div className="flex flex-col items-center h-full pt-8">
        <h3 className="font-cursive text-4xl text-[#3D2B1F] mb-6">Captured Moments</h3>
-       <div className="grid grid-cols-2 gap-4 w-full">
-         {[11,12,13,14].map(n => (
-            <div key={n} className="scrapbook-card p-2 aspect-square transform hover:-rotate-2 transition-transform duration-300">
-               {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img src={`/image${n}.jpg`} alt={`Gallery ${n}`} className="w-full h-full object-cover" />
-            </div>
-         ))}
+       <div className="max-h-[320px] overflow-hidden">
+         <div className="grid grid-cols-2 gap-4 w-full">
+           {[11,12,13,14].map(n => (
+              <div key={n} className="scrapbook-card p-2 aspect-square transform hover:-rotate-2 transition-transform duration-300">
+                 {/* eslint-disable-next-line @next/next/no-img-element */}
+                 <img src={`/image${n}.jpg`} alt={`Gallery ${n}`} className="w-full h-full object-cover" />
+              </div>
+           ))}
+         </div>
        </div>
     </div>
   )
@@ -100,7 +102,7 @@ function ScratchToReveal() {
   return (
     <div className="flex flex-col items-center justify-center h-full pt-8 space-y-6">
        <h3 className="font-cursive text-4xl text-[#3D2B1F]">A Hidden Memory</h3>
-       <div className="relative w-full max-w-[280px] aspect-[3/4] scrapbook-card overflow-hidden">
+       <div className="relative w-full max-w-[200px] aspect-[3/4] scrapbook-card overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/image10.jpg" alt="Secret Memory" className="absolute inset-0 w-full h-full object-cover" />
           <canvas 
@@ -183,14 +185,21 @@ export default function ScrapbookView() {
                            transform: isTurned ? 'rotateY(-180deg)' : 'rotateY(0deg)' 
                         }}
                      >
-                        <div className="absolute inset-0 backface-hidden bg-[#FFFDF7] scrapbook-card rounded-r-xl p-8 flex flex-col">
+                        <div className="absolute inset-0 backface-hidden bg-[#FFFDF7] scrapbook-card rounded-r-xl p-8 flex flex-col overflow-hidden">
                            <div className="flex-grow">{page.component}</div>
                            
+                           {/* Navigation */}
                            <div className="flex justify-between items-center mt-4">
-                              <div className="text-[#3D2B1F]/30 text-xs font-mono">{idx + 1}</div>
                               <button 
-                                 onClick={() => setCurrentPage(idx + 1)}
-                                 className="text-[#3D2B1F]/60 hover:text-[#E8A0A0] transition-colors text-sm uppercase tracking-wider font-handwritten"
+                                 onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
+                                 className={`text-[#3D2B1F]/60 hover:text-[#E8A0A0] transition-colors text-sm font-handwritten ${currentPage === 0 ? 'opacity-0 pointer-events-none' : ''}`}
+                              >
+                                 &larr; Prev
+                              </button>
+                              <div className="text-[#3D2B1F]/30 text-xs font-mono">{idx + 1} / {pages.length}</div>
+                              <button 
+                                 onClick={() => setCurrentPage(p => Math.min(pages.length - 1, p + 1))}
+                                 className={`text-[#3D2B1F]/60 hover:text-[#E8A0A0] transition-colors text-sm font-handwritten ${currentPage >= pages.length - 1 ? 'opacity-0 pointer-events-none' : ''}`}
                               >
                                  Next &rarr;
                               </button>
@@ -203,14 +212,6 @@ export default function ScrapbookView() {
                         >
                            <div className="flex-grow flex items-center justify-center pointer-events-none text-[#3D2B1F]/20">
                               <span className="font-cursive text-6xl">♡</span>
-                           </div>
-                           <div className="flex justify-between items-center mt-4 text-[#3D2B1F]/60">
-                              <button 
-                                 onClick={() => setCurrentPage(idx)}
-                                 className="hover:text-[#E8A0A0] transition-colors text-sm uppercase tracking-wider font-handwritten pointer-events-auto"
-                              >
-                                 &larr; Back
-                              </button>
                            </div>
                         </div>
                      </div>

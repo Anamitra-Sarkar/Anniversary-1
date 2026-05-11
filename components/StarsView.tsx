@@ -43,10 +43,10 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
 
     // Constellations (Years 1-4)
     const constellations = [
-        { id: 1, name: "Year 1: Ignition", img: "/image5.jpg", desc: "The spark that started our infinite universe together.", x: -width/4, y: -height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:50, y:-40}, {x:90, y:10}, {x:140, y:-20}] },
-        { id: 2, name: "Year 2: Gravity", img: "/image6.jpg", desc: "Always pulling each other closer through every orbit.", x: width/3, y: -height/6, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-30, y:60}, {x:40, y:100}, {x:80, y:50}] },
-        { id: 3, name: "Year 3: Expansion", img: "/image7.jpg", desc: "Exploring new worlds and mapping our future.", x: -width/5, y: height/3, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:60, y:20}, {x:80, y:-30}, {x:130, y:40}] },
-        { id: 4, name: "Year 4: Supernova", img: "/image8.jpg", desc: "Our love burning brighter than a billion suns.", x: width/4, y: height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-40, y:-40}, {x:-80, y:10}, {x:-100, y:-50}] },
+        { id: 1, name: "How It Started", img: "/image5.jpg", desc: "The day everything changed.", x: -width/4, y: -height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:50, y:-40}, {x:90, y:10}, {x:140, y:-20}] },
+        { id: 2, name: "Year Two", img: "/image6.jpg", desc: "Getting closer, one laugh at a time.", x: width/3, y: -height/6, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-30, y:60}, {x:40, y:100}, {x:80, y:50}] },
+        { id: 3, name: "Year Three", img: "/image7.jpg", desc: "Adventures we'll never forget.", x: -width/5, y: height/3, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:60, y:20}, {x:80, y:-30}, {x:130, y:40}] },
+        { id: 4, name: "Year Four", desc: "Still us, still magic.", x: width/4, y: height/4, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, points: [{x: 0, y:0}, {x:-40, y:-40}, {x:-80, y:10}, {x:-100, y:-50}] },
     ];
 
     const getScreenPos = (cx: number, cy: number, px: number, py: number) => {
@@ -171,7 +171,7 @@ export default function StarsView({ hidden }: { hidden?: boolean }) {
     const onClick = () => {
        if (hoveredId) {
           const c = constellations.find(x => x.id === hoveredId);
-          if (c) setActiveModal(c);
+          if (c) setActiveModal({ id: c.id, name: c.name, img: c.img || '', desc: c.desc });
        }
     }
 
